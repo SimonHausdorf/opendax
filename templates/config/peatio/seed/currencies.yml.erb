@@ -1,41 +1,4 @@
-- id:                     usd
-  name:                   US Dollar
-  symbol:                 '$'
-  type:                   fiat
-  precision:              2
-  base_factor:            1
-  visible:                true
-  deposit_enabled:        true
-  withdrawal_enabled:     true
-  min_deposit_amount:     0.01
-  min_collection_amount:  0.01
-  withdraw_limit_24h:     100
-  withdraw_limit_72h:     200
-  deposit_fee:            0
-  withdraw_fee:           0
-  position:               1
-  options:                {}
-
-- id:                     fth
-  name:                   Fiat Ethereum
-  symbol:                 '₪'
-  type:                   fiat
-  precision:              2
-  base_factor:            1
-  visible:                true
-  deposit_enabled:        true
-  withdrawal_enabled:     true
-  # Deposits with less amount are skipped during blockchain synchronization.
-  # We advise to set value 10 times bigger than the network fee to prevent losses.
-  min_deposit_amount:     0.01
-  min_collection_amount:  0.01
-  withdraw_limit_24h:     100
-  withdraw_limit_72h:     200
-  deposit_fee:            0
-  withdraw_fee:           0
-  position:               2
-  options:                {}
-
+<% if @config['bitcoind']['enabled'] %>
 - id:                     eth
   name:                   Ethereum
   blockchain_key:         eth-<%= @config['parity']['network'] %>
@@ -95,6 +58,8 @@
     #
     # ERC20 configuration.
     erc20_contract_address: '0x87099add3bcc0821b5b151307c147215f839a110' # Always wrap this value in quotes!
+<% end %>
+
 <% if @config['bitcoind']['enabled'] %>
 - id:                     btc
   name:                   Bitcoin

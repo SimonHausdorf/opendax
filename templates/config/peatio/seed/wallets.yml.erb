@@ -1,15 +1,17 @@
-<% @config['wallets']['eth'].each do |wallet| -%>
-- name:             Ethereum <%= wallet['kind'].capitalize %> Wallet
-  blockchain_key:   eth-<%= @config['parity']['network'] %>
-  currency_id:      eth
-  address:          '<%= wallet['address'] %>'
-  kind:             <%= wallet['kind'] %>
-  max_balance:      <%= wallet['max_balance'] %>
-  status:           active
-  gateway:          parity
-  settings:
-    uri:            http://<%= @config['parity']['address'] %>:<%= @config['parity']['rpcport'] %>
-    secret:         '<%= wallet['secret'] %>'
+<% if @config['parity']['enabled'] %>
+  <% @config['wallets']['eth'].each do |wallet| -%>
+  - name:             Ethereum <%= wallet['kind'].capitalize %> Wallet
+    blockchain_key:   eth-<%= @config['parity']['network'] %>
+    currency_id:      eth
+    address:          '<%= wallet['address'] %>'
+    kind:             <%= wallet['kind'] %>
+    max_balance:      <%= wallet['max_balance'] %>
+    status:           active
+    gateway:          parity
+    settings:
+      uri:            http://<%= @config['parity']['address'] %>:<%= @config['parity']['rpcport'] %>
+      secret:         '<%= wallet['secret'] %>'
+  <% end %>
 <% end %>
 
 <% if @config['bitcoind']['enabled'] %>

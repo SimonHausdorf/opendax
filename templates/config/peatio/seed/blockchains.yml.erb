@@ -1,3 +1,4 @@
+<% if @config['parity']['enabled'] %>
 - key:               eth-<%= @config['parity']['network'] %>
   name:              Ethereum <%= @config['parity']['network'].capitalize %>
   client:            parity
@@ -8,6 +9,7 @@
     address:         https://etherscan.io/address/#{address}
     transaction:     https://etherscan.io/tx/#{txid}
   status:            active
+<% end %>
 
 <% if @config['bitcoind']['enabled'] %>
 - key:               btc-<%= @config['bitcoind']['network'] %>
